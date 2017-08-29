@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>janken pon!</title>
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+
+    <style>
+    	.box {
+    		border: 1px solid black;
+    		width: 150px;
+    		height: 150px;
+    		display: inline-block;
+    		float: left;
+    	}
+    </style>
+</head>
+
+<body>
+	<header>
+		<h1>janken pon!</h1>
+		<p>Multi-player rock-paper-scissors game</p>
+	</header>
+	<div>
+		<div>
+			<div>
+				Hi <span class="playerName">Haruto</span>! you are Player <span id="playerNum">1</span>
+			</div>
+			<div id="status">Waiting for Reo to choose.</div>
+		</div>
+
+		<!-- player view -->
+		<div class="playerBox box">
+			<h2 class="playerName">Haruto</h2>
+			<div class="btn" id="rock">Rock</div>
+			<div class="btn" id="paper">Paper</div>
+			<div class="btn" id="scissors">Scissors</div>
+			<div class="choice hide"></div>
+			<div class="record">
+				Wins: <span id="playerWins">2</span>
+				Losses: <span id="playerLosses">0</span>
+			</div>
+		</div>
+
+		<!-- result view -->
+		<div id="result" class="box">Winner!</div>
+		
+		<!-- opponent view -->
+		<div class="playerBox box">
+			<h2 id="opponentName">Reo</h2>
+			<div class="choice hide"></div>
+			<div class="record">
+				Wins: <span id="playerWins">0</span>
+				Losses: <span id="playerLosses">2</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- chat display -->
+	<div>
+		<textarea id="chatBox" cols="30" rows="10"></textarea>
+		<input id="message" type="text">
+		<button type="submit" id="sendMessage">Send</button>
+	</div>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Script -->
+    <script src="assets/javascript/rpsGame.js"></script>
+</body>
+
+</html>
