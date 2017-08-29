@@ -1,0 +1,175 @@
+/*
+ * -- BASE STYLES --
+ * Most of these are inherited from Base, but I want to change a few.
+ */
+body {
+    color: #526066;
+}
+
+h2, h3 {
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+p {
+    line-height: 1.6em;
+}
+
+
+/*
+ * -- Layout Styles --
+ */
+.l-content {
+    margin: 0 auto;
+}
+
+.l-box {
+    padding: 0.5em 2em;
+}
+.center-text {
+    text-align: center;
+}
+
+/*
+ * -- MENU STYLES --
+ * Make the menu have a very faint box-shadow.
+ */
+ .pure-menu {
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+    margin-bottom: .5em;
+}
+
+.pure-menu-link {
+    padding: .5em .7em;
+} 
+
+
+/*
+ * -- BANNER --
+ */
+
+.banner {
+    background: transparent url('../images/jankenpon_header.jpg') 0 0 no-repeat fixed;
+    background-position: center 2em;
+    /*text-align: center;*/
+    /*background-size: cover;*/
+    /*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/header.jpg', sizingMethod='scale');*/
+
+    height: 200px;
+    width: 100%;
+    margin-bottom: 1em;
+    display: table;
+}
+
+.banner-head {
+    /*display: table-cell;*/
+    vertical-align: middle;
+    margin-bottom: 0;
+    font-size: 2em;
+    color: white;
+    font-weight: 500;
+    text-shadow: 0 1px 1px black;
+}
+
+/*
+ * -- info display --
+ * Contains player's name and game status.
+ */
+ .info {
+    margin-bottom: 2em;
+ }
+
+/*
+ * -- gameArea wrapper --
+ */
+ .gameArea {
+    margin-bottom: 3.125em;
+    text-align: center;
+    max-width: 980px;
+    margin: 0 auto;
+ }
+
+/*
+ * -- box  --
+ * Every section of the gameArea is in a box
+ */
+.box {
+    height: 240px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0 0.5em 2em;
+    padding: 0 0 1em;
+}
+
+/*
+ * -- player and opponent boxes  --
+ */
+.playerBox,
+.opponentBox {
+    
+}
+.boxHeader {
+    background-color: black;
+    color: white;
+    padding-top: 1em;
+    padding-bottom: .6em;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+.boxHeader h2 {
+    margin: 0;
+    padding-bottom: .5em;
+}
+.record {
+    font-size: .8em;
+    font-style: italic;
+}
+.boxButtonGroup {
+    padding: 1em 1em 0;
+}
+.boxButtonGroup .pure-button {
+    margin: .5em 0;
+    display: block;
+}
+.choice {
+    display: block;
+    background-color: black;
+    color: white;
+    margin: 1.5em 1em 0;
+    padding: .5em;
+    font-size: 2em;
+    text-transform: capitalize;
+    border-radius: 1em;
+}
+
+/*
+ * -- results box  --
+ */
+
+.resultBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.resultBox p {
+    font-size: 2em;
+}
+
+ /*
+ * -- chat display  --
+ */
+ .chat-display .pure-g {
+    padding-top: .7em;
+ }
+
+ .pure-form textarea[readonly] {
+    background-color: initial;
+ }
+
+ /* 
+ * --- utility classes ---
+ */
+ .invisible {
+    visibility: hidden;
+}
