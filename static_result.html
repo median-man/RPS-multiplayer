@@ -6,6 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>janken pon!</title>
 
+        <!-- 
+
+
+    ===== static round result =====
+
+	This is what the page looks like when both players have made
+	a choice.
+
+	* start button and name input hidden
+	* "Hi ..." text at top of page is visible
+	* status is not visible
+	* the game area is visible
+	* player's name visible in the player box
+	* selection buttons hidden
+	* choice displayed in player box
+	* choice displayed in opponent's box
+	* opponents name is visible in the opponent box
+	* chat box is visible
+	* results box displays the winner's name
+    -->
+
     <!-- stylesheets -->
     <link rel="stylesheet" href="assets/css/pure.css">
     <link rel="stylesheet" href="assets/css/grids-responsive.css">
@@ -17,7 +38,7 @@
 </head>
 
 <body>
-	<header>
+
 		<div class="pure-menu pure-menu-horizontal">
 		    <a href="#" class="pure-menu-heading">janken pon!</a>
 <!-- 		    <ul class="pure-menu-list">
@@ -28,18 +49,18 @@
 		</div>
 		<div class="banner"></div>
 
-	</header>
+
 	<div class="l-content">
 		<div class=pure-g>
 			<div class="pure-u-1 info">
-				<div class="pure-form">
-					<input id="txtName" class="" type="text" placeholder="enter your name">
+				<div class="pure-form center-text invisible">
+					<input id="txtName" class="" type="text" placeholder="name">
 					<button class="pure-button pure-button-primary">Start</button>
 				</div>
 				<div class="l-box center-text">
-					Hi <span class="playerName">Haruto</span>! you are Player <span id="playerNum">1</span>
+					Hi <span class="playerName">Ben</span>! you are Player <span id="playerNum">1</span>
 				</div>
-				<div id="status" class="l-box center-text">Waiting for Reo to choose.</div>
+				<div id="status" class="l-box center-text invisible">It's your turn.</div>
 			</div>
 		</div>
 
@@ -49,39 +70,39 @@
 			<div class="pure-u-1 pure-u-sm-1-3">
 				<div class="box playerBox">
 					<div class="boxHeader">
-						<h2 class="playerName">Haruto</h2>
+						<h2 class="playerName">Ben</h2>
 						<div class="record">
-							Wins: <span id="playerWins">2</span>
+							Wins: <span id="playerWins">0</span>
 							&nbsp;/&nbsp;
 							Losses: <span id="playerLosses">0</span>
 						</div>						
 					</div>
-					<div class="boxButtonGroup">
+					<div class="boxButtonGroup hidden">
 						<div class="pure-button" id="rock">Rock</div>
 						<div class="pure-button" id="paper">Paper</div>
 						<div class="pure-button" id="scissors">Scissors</div>
 					</div>
-					<div class="choice hidden"></div>
+					<div id="playerChoice" class="choice">Scissors</div>
 				</div>
 			</div>
 			
 			<!-- result view -->
-			<div class="pure-u-1 pure-u-sm-1-3">
-				<div class="box resultBox"><p id="result">Winner!</p></div>
+			<div class="pure-u-1 pure-u-sm-1-3 ">
+				<div class="box resultBox"><p id="result">Ben Wins!</p></div>
 			</div>
 			
 			<!-- opponent view -->
 			<div class="pure-u-1 pure-u-sm-1-3">
 				<div class="box opponentBox">
 					<div class="boxHeader">
-						<h2 class="playerName">Reo</h2>
+						<h2 class="playerName">Jerry</h2>
 						<div class="record">
 							Wins: <span id="opponentWins">0</span>
 							&nbsp;/&nbsp;
-							Losses: <span id="opponentLosses">2</span>
+							Losses: <span id="opponentLosses">0</span>
 						</div>						
 					</div>
-					<div class="choice hidden"></div>
+					<div id="playerChoice" class="choice">Paper</div>
 				</div>
 			</div>
 		</div>

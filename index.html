@@ -6,22 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>janken pon!</title>
 
-        <!-- 
+    <!-- 
 
 
-    ===== static waiting for player =====
+    ===== static landing page =====
 
-	This is what the page looks like when player is waiting for the other
+	This is what the landing page should look like.
 
-	* start button and name input hidden
-	* "Hi ..." text at top of page is visible
-	* status reads "Waiting for [opponent name]."
-	* the game area is visible
-	* player's name visible in the player box
-	* selection buttons hidden
-	* choice displayed in player box
-	* opponents name is visible in the opponent box
-	* chat box is visible
     -->
 
     <!-- stylesheets -->
@@ -36,67 +27,67 @@
 
 <body>
 
-		<div class="pure-menu pure-menu-horizontal">
-		    <a href="#" class="pure-menu-heading">janken pon!</a>
+	<div class="pure-menu pure-menu-horizontal">
+	    <a href="#" class="pure-menu-heading">janken pon!</a>
 <!-- 		    <ul class="pure-menu-list">
-		        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
-		        <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Pricing</a></li>
-		        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
-		    </ul> -->
-		</div>
-		<div class="banner"></div>
+	        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
+	        <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Pricing</a></li>
+	        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
+	    </ul> -->
+	</div>
+	<div class="banner"></div>
 
 
 	<div class="l-content">
 		<div class=pure-g>
 			<div class="pure-u-1 info">
-				<div class="pure-form center-text invisible">
+				<div class="pure-form center-text">
 					<input id="txtName" class="" type="text" placeholder="name">
 					<button class="pure-button pure-button-primary">Start</button>
 				</div>
-				<div class="l-box center-text">
-					Hi <span class="playerName">Ben</span>! you are Player <span id="playerNum">1</span>
+				<div class="l-box center-text invisible">
+					Hi <span class="playerName"></span>! you are Player <span id="playerNum"></span>
 				</div>
-				<div id="status" class="l-box center-text">It's your turn.</div>
+				<div id="status" class="l-box center-text">Enter your name and press play to begin.</div>
 			</div>
 		</div>
 
 		<div class="gameArea pure-g">
 
 			<!-- player view -->
-			<div class="pure-u-1 pure-u-sm-1-3">
+			<div class="pure-u-1 pure-u-sm-1-3 invisible">
 				<div class="box playerBox">
 					<div class="boxHeader">
-						<h2 class="playerName">Ben</h2>
+						<h2 class="playerName">Press start to begin.</h2>
 						<div class="record">
-							Wins: <span id="playerWins">0</span>
+							Wins: <span id="playerWins"></span>
 							&nbsp;/&nbsp;
-							Losses: <span id="playerLosses">0</span>
+							Losses: <span id="playerLosses"></span>
 						</div>						
 					</div>
-					<div class="boxButtonGroup hidden">
+					<div class="boxButtonGroup">
 						<div class="pure-button" id="rock">Rock</div>
 						<div class="pure-button" id="paper">Paper</div>
 						<div class="pure-button" id="scissors">Scissors</div>
 					</div>
-					<div id="playerChoice" class="choice">Scissors</div>
+					<div class="choice hidden"></div>
 				</div>
 			</div>
 			
 			<!-- result view -->
-			<div class="pure-u-1 pure-u-sm-1-3 ">
-				<div class="box resultBox"><p id="result"></p></div>
+			<div class="pure-u-1 pure-u-sm-1-3  invisible">
+				<div class="box resultBox"><p id="result">Winner!</p></div>
 			</div>
 			
 			<!-- opponent view -->
-			<div class="pure-u-1 pure-u-sm-1-3">
+			<div class="pure-u-1 pure-u-sm-1-3  invisible">
 				<div class="box opponentBox">
 					<div class="boxHeader">
-						<h2 class="playerName">Jerry</h2>
+						<h2 class="playerName">Waiting for Opponent</h2>
 						<div class="record">
-							Wins: <span id="opponentWins">0</span>
+							Wins: <span id="opponentWins"></span>
 							&nbsp;/&nbsp;
-							Losses: <span id="opponentLosses">0</span>
+							Losses: <span id="opponentLosses"></span>
 						</div>						
 					</div>
 					<div class="choice hidden"></div>
@@ -105,7 +96,7 @@
 		</div>
 
 		<!-- chat display -->
-		<div class="pure-form chat-display">
+		<div class="pure-form chat-display hidden">
 			<div class="pure-g">
 				<div class="pure-u-1">
 					<div class="l-box">
