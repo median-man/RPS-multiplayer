@@ -106,7 +106,7 @@ var initPlayers = function (userNum, opp) {
 	console.log("initPlayers", "players:",players);
 }
 
-// Notifies user of unable to join the agme
+// Notifies user of unable to join the game
 function unableToJoin() {
 	view.alert("Unable to connect to the game. Try again later.");
 }
@@ -171,6 +171,7 @@ var view = {
 	// TODO:
 	// Create fadeOut method which fades out all elements except
 	// the banner and nav
+
 	render: function(key) {
 
 		switch ( key ) {
@@ -181,14 +182,26 @@ var view = {
 				var statusMsg = "Waiting for opponent to join.";
 				var plyUser = players.user;
 
+				// TODO:
+				// Improve fadOut callback. the callback runs once for
+				// each separate selector fadeOut is called on
+
 				// fade out elements, update the values, fade back in
 				$(function() {
+
+					// update values for user and opponent
+					view.updatePlayer(players.user);
+					if ( players.opponent.name.length > 0 ) {
+						view.updateOpponent(players.opponent);
+					}
+
+					// fade out elements that will change
 					$("#signon, #greeting, #status").fadeOut(400, function() {
+
 						// make greeting visible
 						$("#greeting").removeClass("invisible");
 
-						// update values
-						view.updatePlayer(players.user);
+						// update status message					
 						$("#status").text(statusMsg);
 
 						// fade greating, status, and the rest of the game in
@@ -212,12 +225,10 @@ var view = {
 
 		}
 	},
-	renderOpponent: function(opponent) {
-
-	},
 	updateOpponent: function(data) {
-		// TODO:
-		// update opponent name, wins, losses data
+		$(".opponentName").text(data.name);
+		$("#opponentWins").text(data.wins);
+		$("#opponentLosses").text(data.losses);
 	},
 	updatePlayer: function(data) {
 		$(".userName").text(data.name);
@@ -235,3 +246,8 @@ $(document).ready(function() {
 
 // --- development tools --- //
 function fbRemPlayers() { fbRefPlayers.remove(); }
+function fbValues() {
+	database.ref().once("value", function(snap) {
+		console.log(snap.exportVal());
+	});
+}
