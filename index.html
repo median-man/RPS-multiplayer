@@ -41,11 +41,11 @@
 	<div class="l-content">
 		<div class=pure-g>
 			<div class="pure-u-1 info">
-				<div class="pure-form center-text">
+				<div class="pure-form center-text" id="signon">
 					<input id="txtName" class="" type="text" placeholder="name">
-					<button class="pure-button pure-button-primary">Start</button>
+					<button id="btnStart" class="pure-button pure-button-primary">Start</button>
 				</div>
-				<div class="l-box center-text invisible">
+				<div class="l-box center-text invisible" id="greeting">
 					Hi <span class="playerName"></span>! you are Player <span id="playerNum"></span>
 				</div>
 				<div id="status" class="l-box center-text">Enter your name and press play to begin.</div>
@@ -76,7 +76,7 @@
 			
 			<!-- result view -->
 			<div class="pure-u-1 pure-u-sm-1-3  invisible">
-				<div class="box resultBox"><p id="result">Winner!</p></div>
+				<div class="box resultBox"><p id="result"></p></div>
 			</div>
 			
 			<!-- opponent view -->
