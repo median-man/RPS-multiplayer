@@ -140,10 +140,6 @@ function playerChanged(key, ply) {
 	view.render("wait for player");
 }
 
-
-// TODO-NEXT
-// branch developer from master and merge ref-view
-// branch once code stops throwing error. merge developer to master.
 /*
 *	----- view -----
 *
