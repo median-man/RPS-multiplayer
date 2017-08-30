@@ -1,33 +1,50 @@
+/*
+*	----- Game -----
+*/
+var game = {
+
+};
 
 /*
-*	----- Storage -----
+*	----- storage -----
 *
 * 	Provides methods and properties for saving and retrieving game
 *	data.
 *	
 */
-var Storage = {
+var storage = {
 	// --- values --- //
 	playerCount: 0,
 
 	// --- refernces --- //
-	playersRef: null,
+	playersRef: false,
+	userRef: false,
+	opponentRef: false,
 
 
 	// --- methods --- //
+
+	// Adds player to database if possible.
 	addPlayer: function(player) {
+		
 		if ( this.playerCount === 0 ) {
 			// add player to database as player 1
-			this.playersRef.child(1).set(player);
-			return 1;
-		} else if ( this.playerCount === 1 ) {
+			this.userRef = this.playersRef.child(1);
+		} else if ( !this.userRef && this.playerCount === 1){
 			// add player to db as player 2
-			this.playersRef.child(2).set(player);
-			return 2;
-		} else {
-			console.log("Storage: Already 2 players.");
+			this.userRef = this.playersRef.child(2);
+
+		// return 0 if game is full and player not already
+		// in the game
+		} else if ( !this.userRef ) {
+			console.log("storage: Already 2 players.");
 			return 0;
 		}
+		this.userRef.set(player);
+		return this.userRef.key;
+	},
+	setOpponentRef: function(key) {
+
 	},
 	connect: function() {
 
@@ -37,7 +54,7 @@ var Storage = {
 		    authDomain: "rps-multi-e7e39.firebaseapp.com",
 		    databaseURL: "https://rps-multi-e7e39.firebaseio.com",
 		    projectId: "rps-multi-e7e39",
-		    storageBucket: "rps-multi-e7e39.appspot.com",
+		    StorageBucket: "rps-multi-e7e39.appspot.com",
 		    messagingSenderId: "880645929001"
 		};
 		firebase.initializeApp(config);
@@ -48,9 +65,12 @@ var Storage = {
 
 		// handle change in players
 		this.playersRef.on("value", function(snap) {
-			Storage.playerCount = snap.numChildren();
+			storage.playerCount = snap.numChildren();
 			console.log(snap.exportVal());
 		});
+	},
+	clearAll: function() {
+		this.playersRef.remove();
 	}
 };
 
@@ -68,12 +88,13 @@ var Player = function(name = "", wins = 0, losses =0 ) {
 
 
 $(document).ready(function() {
-	Storage.connect();
+	storage.connect();
 	$("#btnStart").on("click", function() {
-		var name = $("#txtName").val().trim();
+		var  name = $("#txtName").val().trim();
 		$("#txtName").val("");
 
-		Storage.addPlayer(new Player(name));
+		var playerNum = storage.addPlayer(new Player(name));
+		console.log(playerNum);
 	});
 	
 });
