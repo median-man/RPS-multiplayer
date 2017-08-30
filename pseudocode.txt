@@ -1,0 +1,39 @@
+on page load
+----------------------------------------------------------------------
+instantiate storage object (data base connection)
+
+
+end page load script
+----------------------------------------------------------------------
+
+player enters name
+player clicks play
+
+on play button click
+---------------------------------------------------------------------
+logIn player
+	get player name
+	add player to database if number of players is less than 2 and
+	user not already connected for game
+if player is 1
+	display your turn view
+else if player is 2
+	display waiting for turn screen
+end play button click handling
+----------------------------------------------------------------------
+
+when players data changes
+----------------------------------------------------------------------
+
+
+end players data changes handling
+----------------------------------------------------------------------
+
+when a player makes a choice (takes turn)
+----------------------------------------------------------------------
+
+
+
+
+end handling turn
+----------------------------------------------------------------------
