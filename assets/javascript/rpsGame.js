@@ -88,6 +88,8 @@ var initPlayers = function (userNum, opp) {
 
 	// set opponent values if opp argument was passed
 	if ( typeof opp !== 'undefined' ) {
+
+		// set initial opponent values
 		players.opponent = opp;
 	}
 
@@ -213,8 +215,12 @@ var view = {
 	renderOpponent: function(opponent) {
 
 	},
+	updateOpponent: function(data) {
+		// TODO:
+		// update opponent name, wins, losses data
+	},
 	updatePlayer: function(data) {
-		$(".playerName").text(data.name);
+		$(".userName").text(data.name);
 		$("#playerWins").text(data.wins);
 		$("#playerLosses").text(data.losses);
 		$("#playerNum").text(data.num);
