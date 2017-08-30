@@ -15,22 +15,34 @@ var fbRefPlayers = database.ref("/players");
 var fbRefUser;
 var fbRefOpponent;
 
-// TODO-NEXT:
 // handle initially setting the player/opponent numbers
 // setup references to the players
 fbRefPlayers.once("value", function(snap) {
-	var user = {};
-	// no players yet; player 1
+	var userNum;
+	var opponent;
+
+	// REMOVEME
+	console.log("snap exists:",snap.exists(), "; numChildren", snap.numChildren());
+	// no players yet; user is player 1
 	if ( !snap.exists() ) {
 		fbRefUser = fbRefPlayers.child(1);
 		fbRefOpponent = fbRefPlayers.child(2);
-		user.num = 1;
+		userNum = 1;
 	} else if ( snap.numChildren() === 1 ) {
 		fbRefOpponent = fbRefPlayers.child(1);
 		fbRefUser = fbRefPlayers.child(2);
-		user.num = 2;
+		userNum = 2;
+
+		// get opponent data; opponent is plyr 1
+		opponent = snap.child(1).val();
+
+	// already 2 players connected
 	} else {
+		// log exception and notify player
 		console.log("Already 2 players.");
+		unableToJoin();
+		// stop execution
+		return;
 	}
 
 	// listen for changes to the opponent data
@@ -39,27 +51,15 @@ fbRefPlayers.once("value", function(snap) {
 		// update the opponent name
 
 	});
-	playerChanged('user', user);
+	initPlayers(userNum, opponent);
 
 });
 
 var store = {
-	updateUser: function(plyUser) {
+	setUser: function(plyUser) {
 		fbRefUser.set(plyUser);
 	}
 };
-
-
-
-
-
-// Handles a change in the opponent.
-function opponentChanged(opp) {
-
-	// render the name
-
-}
-
 
 /*
 *	----- Players -----
@@ -68,13 +68,6 @@ function opponentChanged(opp) {
 *	the term 'opponent' applies to the person the user is playing
 *	the game with. 'Player' will refer to a generic player class.
 */
-
-// initialize players object with new instances of Player
-var players = {
-	user: new Player(),
-	opponent: new Player()
-};
-
 // Player is a simple class to represent the data associated with
 // a player in the game. (user or opponent)
 var Player = function(name = "", wins = 0, losses = 0, num = 0 ) {
@@ -83,6 +76,39 @@ var Player = function(name = "", wins = 0, losses = 0, num = 0 ) {
 	this.losses = losses;
 	this.number = num; // player 1 or player 2
 };
+
+// initialize players object with new instances of Player
+var players = {
+	user: new Player(),
+	opponent: new Player()
+};
+
+// initializes player values and opponent
+var initPlayers = function (userNum, opp) {
+
+	// set opponent values if opp argument was passed
+	if ( typeof opp !== 'undefined' ) {
+		players.opponent = opp;
+	}
+
+	// update num property of players
+	if ( userNum === 1 ) {
+		players.user.num = 1;
+		players.opponent.num = 2;
+	} else if ( userNum === 2 ) {
+		players.user.num = 2;
+		players.opponent.num = 1;		
+	}
+
+	// REMOVEME
+	console.log("initPlayers", "players:",players);
+}
+
+// Notifies user of unable to join the agme
+function unableToJoin() {
+	view.alert("Unable to connect to the game. Try again later.");
+}
+
 // Handles a change in a player
 function playerChanged(key, ply) {
 	// removeme
@@ -103,13 +129,18 @@ function playerChanged(key, ply) {
 
 	// update the database if changed player is the user
 	if ( key === 'user' ) {
-		store.updateUser(players.user);
+		store.setUser(players.user);
 	}
 
 	// update the view
 	view.render("wait for player");
 }
 
+
+// TODO-NEXT
+// finish refactor of view methods so calling init does not throw
+// an exception. branch developer from master and merge ref-view
+// branch once code stops throwing error. merge developer to master.
 /*
 *	----- view -----
 *
