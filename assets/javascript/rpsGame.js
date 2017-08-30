@@ -129,7 +129,11 @@ function playerChanged(key, ply) {
 
 	// update the database if changed player is the user
 	if ( key === 'user' ) {
-		store.setUser(players.user);
+		store.setUser( {
+			name: players.user.name,
+			losses: players.user.losses,
+			wins: players.user.wins
+		});
 	}
 
 	// update the view
@@ -138,8 +142,7 @@ function playerChanged(key, ply) {
 
 
 // TODO-NEXT
-// finish refactor of view methods so calling init does not throw
-// an exception. branch developer from master and merge ref-view
+// branch developer from master and merge ref-view
 // branch once code stops throwing error. merge developer to master.
 /*
 *	----- view -----
@@ -159,14 +162,17 @@ var view = {
 		// register event listeners
 		$("#btnStart").on("click", function() {
 
-			// get players name and reset form
+			// get user's name and reset form
 			var  name = $("#txtName").val().trim();
 			$("#txtName").val("");
 
 			// handle user change
-			userChanged('user', { name: name });
+			playerChanged('user', { name: name });
 		});
 	},
+	// TODO:
+	// Create fadeOut method which fades out all elements except
+	// the banner and nav
 	render: function(key) {
 
 		switch ( key ) {
